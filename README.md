@@ -11,5 +11,3 @@ Full GitOps setup used in production for 50+ clusters.
 
 **Tech Stack**
 ArgoCD · Kubernetes (GKE/EKS) · Helm · GitHub Actions
-
-This repo is a living example of the GitOps transformation I led at PMY.
