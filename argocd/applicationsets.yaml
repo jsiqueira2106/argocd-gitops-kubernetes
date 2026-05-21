@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: multi-cluster-apps
+  namespace: argocd
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          environment: production
+  template:
+    metadata:
+      name: '{{name}}-app'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/YOURUSERNAME/argocd-gitops-kubernetes.git'
+        targetRevision: HEAD
+        path: 'apps/{{name}}'
+      destination:
+        server: '{{server}}'
+        namespace: '{{name}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

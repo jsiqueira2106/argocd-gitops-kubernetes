@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gke-prod-cluster-config
+  namespace: argocd
+spec:
+  destination:
+    name: gke-prod
+    namespace: argocd
+  project: default
+  source:
+    path: clusters/gke-prod
+    repoURL: https://github.com/YOURUSERNAME/argocd-gitops-kubernetes.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
